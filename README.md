@@ -71,3 +71,185 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# home.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Dosage Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ML Dosage Prediction</h1>
+        <form action="/predict" method="post">
+            <label for="age">Age:</label>
+            <input type="number" name="age" required><br>
+            <label for="sugar">Sugar Level (normal/high):</label>
+            <select name="sugar" class="dropdown" required>
+                <option value="abnormal">abnormal</option>
+                <option value="normal">normal</option>
+            </select><br>
+            <label for="bp">Blood Pressure (normal/abnormal):</label>
+            <select name="bp" class="dropdown" required>
+                <option value="abnormal">abnormal</option>
+                <option value="normal">normal</option>
+            </select><br>
+            <label for="drug">Drug:</label>
+            <select name="drug" class="dropdown" required>
+                <!-- ... options ... -->
+                <option value="Mirtazapine">Mirtazapine</option>
+        <option value="Mesalamine">Mesalamine</option>
+        <option value="Bactrim">Bactrim</option>
+        <option value="Contrave">Contrave</option>
+        <option value="LEVORA">LEVORA</option>
+        <option value="Miconazole">Miconazole</option>
+        <option value="Nuvigil">Nuvigil</option>
+        <option value="Ciprofloxacin">Ciprofloxacin</option>
+        <option value="Trazodone">Trazodone</option>
+        <option value="Aripiprazole">Aripiprazole</option>
+        <option value="Oxybutynin">Oxybutynin</option>
+        <option value="Clonazepam">Clonazepam</option>
+        <option value="Sodium oxybate">Sodium oxybate</option>
+        <option value="Lamotrigine">Lamotrigine</option>
+        <option value="Blisovi Fe 1 / 20">Blisovi Fe 1 / 20</option>
+        <option value="Ivermectin">Ivermectin</option>
+        <option value="Suprep Bowel Prep Kit">Suprep Bowel Prep Kit</option>
+        <option value="Movantik">Movantik</option>
+        <option value="Actos">Actos</option>
+        <option value="Duloxetine">Duloxetine</option>
+        <option value="NuvaRing">NuvaRing</option>
+        <option value="Escitalopram">Escitalopram</option>
+        <option value="Campral">Campral</option>
+        <option value="Gabapentin">Gabapentin</option>
+        <option value="Levonorgestrel">Levonorgestrel</option>
+        <option value="Aubra">Aubra</option>
+        <option value="Ethinyl estradiol / etonogestrel">Ethinyl estradiol / etonogestrel</option>
+        <option value="Microgestin Fe 1.5 / 30">Microgestin Fe 1.5 / 30</option>
+        <option value="Wellbutrin">Wellbutrin</option>
+        <option value="Etonogestrel">Etonogestrel</option>
+        <option value="Nitrofurantoin">Nitrofurantoin</option>
+        <option value="Beyaz">Beyaz</option>
+        <option value="Lo Loestrin Fe">Lo Loestrin Fe</option>
+        <option value="Ethinyl estradiol / norgestimate">Ethinyl estradiol / norgestimate</option>
+        <option value="Guaifenesin / pseudoephedrine">Guaifenesin / pseudoephedrine</option>
+        <option value="Glyburide">Glyburide</option>
+        <option value="Phentermine / topiramate">Phentermine / topiramate</option>
+            </select><br>
+            <label for="Sideeffects">Side-effects:</label>
+            <select name="Sideeffects" class="dropdown" required>
+                <!-- ... options ... -->
+                 <option value="dizziness">dizziness</option>
+        <option value="headache">headache</option>
+        <option value="vomting">vomting</option>
+        <option value="vomting and headache">vomting and headache</option>
+        <option value="headache and dizziness">headache and dizziness</option>
+        <option value="weight gain">weight gain</option>
+        <option value="heatburn">heatburn</option>
+            </select><br>
+            <button type="submit">Predict Dosage</button>
+        </form>
+    </div>
+</body>
+</html>
+
+# result.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Dosage Prediction Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+<body>
+   <div class="container">
+    <h1>ML Dosage Prediction Result</h1>
+    <p>{{ result }}</p>
+    <a href="/" id="link">Go back to home</a>
+       </div>
+</body>
+</html>
+
+# style.css
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('/static/images/3.avif');
+    background-size: cover;
+    background-position: center;
+    background-color: #f0f0f0; /* Fallback color if the image is not loaded */
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for the container */
+    padding: 40px;
+    margin: 40px;
+    border-radius: 10px;
+    height:50%;
+    width:40%;
+    margin-left:400px;
+}
+
+h1 {
+    color: #3498db;
+    text-align: center;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #3498db;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    color: green;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.dropdown {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    color: green;
+    font-weight: bold;
+}
+
+p {
+    text-align: center;
+    font-size: large;
+    color: black;
+    font-weight: bold;
+}
+#link{
+  align:center;
+}
+
+
